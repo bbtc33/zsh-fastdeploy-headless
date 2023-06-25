@@ -50,6 +50,7 @@ fi
 #set zshell as default and copy the config files
 chsh -s /bin/zsh
 mkdir -p $HOME/.cache/zsh/
+mkdir -p $HOME/.config
 touch $HOME/.cache/zsh/history
 
 cp .config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
