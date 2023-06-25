@@ -26,7 +26,6 @@ fi
 echo "Installing zsh"
 if [[ $user == root ]]
 then
-	echo "you are root"
 	case $target_distro in
 		"Arch")
 			pacman -Syu zsh
@@ -37,7 +36,6 @@ then
 			;;
 	esac
 else
-	echo "you are not root"
 	case $target_distro in
 		"Arch")
 			sudo pacman -Syu zsh
@@ -50,23 +48,32 @@ else
 fi
 
 #set zshell as default and copy the config files
-chsh -s zsh
+chsh -s /bin/zsh
 mkdir -p $HOME/.cache/zsh/
-cp .config/zsh/.zshrc $HOME #there are two .zshrcs for some reason, I'm not bothering to check which one is used
-mv -iv .config $HOME
-mv -iv .zprofile $HOME
+touch $HOME/.cache/zsh/history
+
+cp .config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
+
+cp -r .config/shell $HOME/.config/
+cp -r .config/zsh $HOME/.config/
+
 
 #install syntax highlighting
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $HOME
-
-if [[ $user == root ]]
+if [[$user == root ]]
 then
-	mv -iv fast-syntax-highlighting /usr/share/zsh/plugins/
+	mkdir -p /usr/share/zsh/plugins
+	pushd /usr/share/zsh/plugins
+	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
+	popd
 else
-	sudo mv -iv fast-syntax-highlighting /usr/share/zsh/plugins/
+	su
+	mkdir -p /usr/share/zsh/plugins
+	pushd /usr/share/zsh/plugins
+	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
+	popd
+	exit
 fi
 
-rm -rf fast-syntax-highlighting
-
 #set the aliases
+chmod -R +x $HOME/.config/shell
 $HOME/.config/shell/aliasrc
