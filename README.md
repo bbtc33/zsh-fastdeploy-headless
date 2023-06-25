@@ -7,3 +7,6 @@ All dotfiles adapted from Luke Smith (https://github.com/LukeSmithxyz)
 # Installation
 1. git clone repo into system
 2. run deploy.sh as user
+
+# BROKEN DO NOT USE 
+WILL MESS UP YOUR SYSTEM
