@@ -60,7 +60,7 @@ cp -r .config/zsh $HOME/.config/
 
 
 #install syntax highlighting
-if [[$user == root ]]
+if [[ $user == root ]]
 then
 	mkdir -p /usr/share/zsh/plugins
 	pushd /usr/share/zsh/plugins
