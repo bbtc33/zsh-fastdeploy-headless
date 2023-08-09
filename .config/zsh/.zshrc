@@ -12,7 +12,7 @@ SAVEHIST=10000
 HISTFILE=$HOME/.cache/zsh/history
 
 # Load aliases and shortcuts if existent.
-source $HOME/.config/aliasrc
+source $HOME/.config/shell/aliasrc
 
 # Basic auto/tab complete:
 autoload -U compinit
