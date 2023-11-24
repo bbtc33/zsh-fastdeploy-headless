@@ -7,6 +7,10 @@ then
 elif [[ $(cat /etc/os-release) == *"Debian"* ]]
 then
 	target_distro=Debian
+
+elif [[ $(cat /etc/os-release) == *"Ubuntu"* ]]
+then
+	target_distro=Debian #same package manager
 else
 	echo System not supported
 	exit
@@ -50,14 +54,21 @@ fi
 #set zshell as default and copy the config files
 chsh -s /bin/zsh
 mkdir -p $HOME/.cache/zsh/
-mkdir -p $HOME/.config
+mkdir -p $HOME/.config/shell
+mkdir -p $HOME/.config/zsh
 touch $HOME/.cache/zsh/history
 
-cp .config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
+cp config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
+cp config/zfs/.zshrc $HOME/.config/zsh/.zshrc
 
-cp -r .config/shell $HOME/.config/
-cp -r .config/zsh $HOME/.config/
+cp config/shell/inputrc $HOME/.config/shell/
+cp config/shell/profile $HOME/.config/shell/
 
+if [[ $user == root ]]
+then
+	cp config/shell/aliasrc.root $HOME/.config/shell/aliasrc
+else
+	cp config/shell/aliasrc $HOME/.config/shell/
 
 #install syntax highlighting
 if [[ $user == root ]]
@@ -78,3 +89,5 @@ fi
 #set the aliases
 chmod -R +x $HOME/.config/shell
 $HOME/.config/shell/aliasrc
+
+logout
