@@ -59,7 +59,7 @@ mkdir -p $HOME/.config/zsh
 touch $HOME/.cache/zsh/history
 
 cp config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
-cp config/zfs/.zshrc $HOME/.config/zsh/.zshrc
+cp config/zsh/.zshrc $HOME/.config/zsh/.zshrc
 
 cp config/shell/inputrc $HOME/.config/shell/
 cp config/shell/profile $HOME/.config/shell/
@@ -68,7 +68,8 @@ if [[ $user == root ]]
 then
 	cp config/shell/aliasrc.root $HOME/.config/shell/aliasrc
 else
-	cp config/shell/aliasrc $HOME/.config/shell/
+	cp config/shell/aliasrc $HOME/.config/shell/aliasrc
+fi
 
 #install syntax highlighting
 if [[ $user == root ]]
@@ -88,6 +89,4 @@ fi
 
 #set the aliases
 chmod -R +x $HOME/.config/shell
-$HOME/.config/shell/aliasrc
-
-logout
+source $HOME/.config/shell/aliasrc
