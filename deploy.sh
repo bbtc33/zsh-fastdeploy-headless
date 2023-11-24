@@ -79,7 +79,7 @@ then
 	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 	popd
 else
-	su
+	sudo -s
 	mkdir -p /usr/share/zsh/plugins
 	pushd /usr/share/zsh/plugins
 	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
