@@ -26,6 +26,20 @@ then
 	echo "Abort"
 	exit
 fi
+
+#Do you have sudo???
+if [[ $user != root ]]
+then
+	echo "Do you have sudo?"
+	read -p "[Y/n]" -n 1 -r
+	echo $'\n'
+	if [[ $REPLY =~ ^[Nn]$ ]]
+	then
+		echo "Abort"
+		exit
+	fi
+fi
+
 #install zsh based on which distro and perms
 echo "Installing zsh"
 if [[ $user == root ]]
@@ -79,11 +93,8 @@ then
 	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 	popd
 else
-	sudo -s
-	mkdir -p /usr/share/zsh/plugins
-	pushd /usr/share/zsh/plugins
-	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
-	popd
+	sudo mkdir -p /usr/share/zsh/plugins
+	sudo git clone https://github.com/zdharma-continuum/fast-syntax-highlighting /usr/share/zsh/plugins
 	exit
 fi
 
