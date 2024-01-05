@@ -93,8 +93,8 @@ then
 	git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
 	popd
 else
-	sudo mkdir -p /usr/share/zsh/plugins
-	sudo git clone https://github.com/zdharma-continuum/fast-syntax-highlighting /usr/share/zsh/plugins
+	sudo mkdir -p /usr/share/zsh/plugins/fast-syntax-highlighting
+	sudo git clone https://github.com/zdharma-continuum/fast-syntax-highlighting /usr/share/zsh/plugins/fast-syntax-highlighting
 	exit
 fi
 
