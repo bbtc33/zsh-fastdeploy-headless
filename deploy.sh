@@ -72,8 +72,8 @@ mkdir -p $HOME/.config/shell
 mkdir -p $HOME/.config/zsh
 touch $HOME/.cache/zsh/history
 
-cp config/zsh/.zshrc $HOME/.zshrc #there are two .zshrcs for some reason, I'm not bothering to check which one is used
 cp config/zsh/.zshrc $HOME/.config/zsh/.zshrc
+ln -s $HOME/.config/zsh/.zshrc $HOME/.zshrc
 
 cp config/shell/inputrc $HOME/.config/shell/
 cp config/shell/profile $HOME/.config/shell/
